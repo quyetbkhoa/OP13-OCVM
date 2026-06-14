@@ -23,17 +23,17 @@
 
 {
   "Key": "NORMAL_RAWHDR_OUTDOOR_ISO",
-  "Value": "180"
+  "Value": "210"
 },
 
 {
   "Key": "NORMAL_RAWHDR_OUTDOOR_FACE_ISO",
-  "Value": "200"
+  "Value": "260"
 },
 
 {
   "Key": "NORMAL_RAWHDR_INDOOR_ISO",
-  "Value": "290"
+  "Value": "330"
 },
 
 {
@@ -43,7 +43,7 @@
 
 {
   "Key": "REAR_LOWLIGHT_YUVHDR_ISO",
-  "Value": "2400"
+  "Value": "810"
 },
 
 {
@@ -58,12 +58,12 @@
 
 {
   "Key": "NIGHT_SCENE_LUX_INDEX_NIGHT_MIN",
-  "Value": "10"
+  "Value": "400"
 },
 
 {
   "Key": "NIGHT_SCENE_LUX_INDEX_NIGHT_MAX",
-  "Value": "190"
+  "Value": "999"
 },
 
 {
@@ -102,7 +102,7 @@
   "Key": "IZOOM_BINNING_TRIGGER_REGION",
   "Type": "Int32",
   "Count": "2",
-  "Value": "300, 330"
+  "Value": "360, 390"
 },
 
 {
@@ -286,6 +286,27 @@
 },
 
 {
+  "Key": "PRESET_SCENE_SPOTLIGHT_DELAY_SWITCH",
+  "Type": "Int32",
+  "Count": "2",
+  "Value": "800, 900"
+},
+
+{
+  "Key": "PRESET_SCENE_FIREWORK_DELAY_SWITCH",
+  "Type": "Int32",
+  "Count": "2",
+  "Value": "800, 900"
+},
+
+{
+  "Key": "PRESET_SCENE_SPOTLIGHT_IZOOM_DELAY_SWITCH",
+  "Type": "Int32",
+  "Count": "2",
+  "Value": "800, 900"
+},
+
+{
   "Key": "NORMAL_SCENE_NIGHT_DELAY_SWITCH_LIVE",
   "Type": "Int32",
   "Count": "2",
@@ -350,7 +371,7 @@
 
 {
   "Key": "MFNR_SUPPORT",
-  "Value": "0",
+  "Value": "1",
   "Comment": "1:support"
 },
 
@@ -2885,7 +2906,7 @@
             0 /* drc gain threshold */,
             99 /* hdr scope threshold */,
             150 /* moving object threshold */,
-            0.35 /* max gyro threshold */,
+            0.25 /* max gyro threshold */,
             2000000000 /* focus distance threshold */,
             20000 /* lux index threshold */,
             800 /* moving object threshold when lux index bigger than lux index threshold */,
@@ -2898,9 +2919,9 @@
   "Key": "MERGE_HDR_EFFECT_PARAMETERS",
   "Type": "Float",
   "Count": "4",
-  "Value": "800       /* outdoorLux */,
-            230       /* indoorLux  */,
-            110       /* nightLux   */,
+  "Value": "200       /* outdoorLux */,
+            300       /* indoorLux  */,
+            280       /* nightLux   */,
             0.6       /* irRatio    */",
   "Comment": "Scenetype decision parameters"
 },
@@ -2909,9 +2930,9 @@
   "Key": "TURBO_RAW_SCENE_MODE_PARAMETERS",
   "Type": "Float",
   "Count": "3",
-  "Value": "800       /* outdoorLux */,
-            230       /* indoorLux  */,
-            110       /* nightLux   */",
+  "Value": "240       /* outdoorLux */,
+            330       /* indoorLux  */,
+            280       /* nightLux   */",
   "Comment": "SceneMode decision parameters"
 },
 
@@ -3068,7 +3089,7 @@
   "Key": "HYBRID_RAW_BASE_RATIO",
   "Type": "Float",
   "Count": "2",
-  "Value": "2.7,5.4",
+  "Value": "6.0,12.0",
   "Comment": "binning ratio and izoom ratio"
 },
 
@@ -3210,7 +3231,7 @@
   "Key": "IS_SUPPORT_TURBORAW_FRAMELESS",
   "Type": "Int32",
   "Count": "6",
-  "Value": "1,0,1,1,1,0",
+  "Value": "1,0,0,1,0,0",
   "Comment": "enable or disable turboraw frameless of each sensorMode
               sensorMode: BINNING, IZOOM, 1DOL, 2DOL, IZOOM_2DOL,IZOOM_QBC"
 },
@@ -3262,35 +3283,35 @@
   "Key": "RMSC_MFNR_GAIN_THRESH",
   "Type": "Float",
   "Count": "1",
-  "Value": "60"
+  "Value": "10"
 },
 
 {
   "Key": "RMSC_MFNR_DRC_THRESH",
   "Type": "Float",
   "Count": "1",
-  "Value": "2.0"
+  "Value": "4"
 },
 
 {
   "Key": "RMSC_MFNR_DRAK_BOOST_THRESH",
   "Type": "Float",
   "Count": "1",
-  "Value": "3.5"
+  "Value": "1.5"
 },
 
 {
   "Key": "RMSC_MFNR_LUX_THRESH",
   "Type": "Int32",
   "Count": "1",
-  "Value": "240"
+  "Value": "200"
 },
 
 {
   "Key": "RMSC_MFNR_DRC_ISO_THRESH",
   "Type": "Int32",
   "Count": "1",
-  "Value": "6400"
+  "Value": "1000"
 },
 
 {

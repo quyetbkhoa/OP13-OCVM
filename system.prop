@@ -1,5 +1,7 @@
 ro.camera.req.fmq.size=0
 ro.camera.res.fmq.size=0
+vendor.debug.camera.overrideMaxImageBufferCountRealTime=0xffffffff
+vendor.debug.camera.overrideMaxImageBufferCountNonRealTime=0xffffffff
 vendor.arcsoft.turbo_re_lowdeblur=99
 vendor.arcsoft.turbo_re_fulldeblur=99
 vendor.arcsoft.turbo_re_sharpness=0
