@@ -61,9 +61,15 @@ Mod comes in two packages:
 >
 
 > ## :warning: Installation and requirements
-> + OOS16 OnePlus13
->   + COS users can test & report back if mod works there
+> + OOS16 / ColorOS 16 OnePlus 13
 > + Supported root methods: Magisk/KernelSU/KernelSU Next/APatch
+
+> ## :scroll: Changelog
+
+> ### v70.0.0.1
+> + **Fix:** Updated `CameraHWConfiguration.config` and `conf_tuning_params.json` to match ColorOS 16 structure — fixes camera crash (`NullPointerException`) on ColorOS 16 builds
+> + **Fix:** Restored stock config layout while preserving all mod-specific values
+> + ColorOS 16 compatibility confirmed ✅
 
 > ## :incoming_envelope: Support
 > + [UCVM/OCVM telegram group](https://t.me/ucvm_gcam/24733)
