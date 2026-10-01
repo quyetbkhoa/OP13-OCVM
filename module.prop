@@ -1,6 +1,6 @@
 id=xy1_um8s_op13_ocvm
-name=OCVM | OP13 Camera Mod
-version=61.82
-versionCode=6182
-author=UltraM8
-description=OnePlus 13 camera mod
+name=OCVM | OP13 Camera Mod (Patched C.93)
+version=61.82-patched
+versionCode=618201
+author=UltraM8 (Patched for OP13 C.93)
+description=OnePlus 13 camera mod with fixed sensor topology, clean booleans & 50MP buffer unlock.

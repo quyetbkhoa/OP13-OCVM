@@ -1,20 +1,14 @@
 #!/system/bin/sh
-rm -rf /data/property/*
-if [ -f $INFO ]; then
-  while read LINE; do
-    if [ "$(echo -n $LINE | tail -c 1)" == "~" ]; then
-      continue
-    elif [ -f "$LINE~" ]; then
-      mv -f $LINE~ $LINE
-    else
-      rm -f $LINE
-      while true; do
-        LINE=$(dirname $LINE)
-        [ "$(ls -A $LINE 2>/dev/null)" ] && break 1 || rm -rf $LINE
-      done
-    fi
-  done < $INFO
-  rm -f $INFO
-fi
-su -c "pm clear com.oplus.camera"; stop cameraserver; start cameraserver; rm "$0"
-
+# Safe uninstaller
+resetprop -d persist.vendor.camera.forceDisableUBWCOnIfeIpeLink
+resetprop -d persist.vendor.camera.disableIPEInternalDownscale
+resetprop -d persist.vendor.camera.maxRAWSizes
+resetprop -d persist.vendor.camera.overrideOPPCLOCK
+resetprop -d persist.vendor.camera.enableInternalHALPixelStreamConfig
+resetprop -d persist.vendor.camera.csidClockFrequencyMHz
+resetprop -d persist.vendor.camera.ife.clockFrequencyMHz
+resetprop -d persist.vendor.camera.ife.camnocBandwidthMBytes
+resetprop -d persist.vendor.camera.ife.externalBandwidthMBytes
+resetprop -d persist.vendor.camera.dynamicPropertiesEnabled
+resetprop -d persist.vendor.camera.IFEnumFramesHighBW
+stop cameraserver; start cameraserver
