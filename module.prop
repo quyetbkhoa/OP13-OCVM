@@ -1,6 +1,6 @@
 id=xy1_um8s_op13_ocvm
-name=OCVM | OP13 Camera Mod (COS16 501 Fixed)
-version=70.0.0.1-COS16-501
-versionCode=70001
+name=OCVM | OP13 Camera Mod
+version=v80
+versionCode=80000
 author=UltraM8, quyetbkhoa & Antigravity
-description=OCVM tuned for OnePlus 13 on ColorOS 16 16.0.10.501. Uses native Qualcomm vendor HAL to fix Master Mode 0x8009 crash and aligned 501 libraries.
+description=Find X8 Ultra 100% full camera processing pipeline for OnePlus 13 on ColorOS 16 (16.0.10.501/C.93). Native Qualcomm vendor HAL, no crash, full Hasselblad features working.

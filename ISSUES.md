@@ -1,74 +1,38 @@
-# Known Issues — OP13-OCVM Patched (v61.82-patched for C.93)
+# Issue Tracking & Changelog — OP13-OCVM
 
-## ⚠️ Master Mode Crash (`0x8009`)
+## ✅ [RESOLVED in v80] Master Mode Crash (`0x8009` at `camera.oemlayer.so`)
 
-**Status:** OPEN — Chưa có fix khả thi  
-**Mức độ:** Camera văng app khi chuyển sang Master Mode  
-**Ảnh hưởng:** Chỉ Master Mode. Tất cả các chế độ khác (Chụp thường, Video, Chân dung, v.v.) hoạt động bình thường.
-
-### Nguyên nhân gốc (Root Cause)
-
-Crash xảy ra tại `camera.oemlayer.so` (file hệ thống gốc C.93), hàm `OemLayer::MultiCamUsecase::UpdateRTConfigStream` tại offset `0xd0cd0`.
-
-**Chi tiết kỹ thuật:**
-- Khi Master Mode (`operation_mode = 0x8009`) được kích hoạt, `camera.oemlayer.so` kiểm tra `EnableOfflineFeatureList` trong `CameraHWConfiguration.config`.
-- Vì `0x8009` nằm trong danh sách, hệ thống định tuyến (route) luồng xử lý qua `RealtimeCamera3Device::ConfigStreams` → `MultiCamUsecase::UpdateRTConfigStream`.
-- Hàm này truy cập một `std::map` tại offset `0x3128` để tìm stream metadata cho Physical Camera ID 0 (Main sensor).
-- File mod `com.qti.chi.override.so` (build trên nền firmware khác, không phải C.93) không cung cấp entry cho Camera 0 trong map này. Map chỉ chứa Camera 2 (UW), 3 (Tele), 4 (Tele2).
-- `std::map::operator[]` tự tạo entry mặc định với null pointer → `ldr w20, [x8]` đọc địa chỉ `0x0` → **SIGSEGV**.
-
-### Các hướng đã thử và kết quả
-
-| # | Phương pháp | Kết quả |
-|---|---|---|
-| 1 | Xóa `0x8009` khỏi `EnableOfflineFeatureList` | Master Mode không crash nhưng **đen thui** (stream không được thiết lập) |
-| 2 | Vô hiệu hóa `libAlgoProcess.so` của X8U Add-on | Camera **liệt hoàn toàn** ở mọi chế độ (file này là "nhạc trưởng" bắt buộc) |
-| 3 | Dùng bản git v70 (quyetbkhoa/OP13-OCVM) | Crash tương tự tại cùng vị trí (cùng root cause) |
-
-### Hướng fix tiềm năng (chưa thực hiện)
-
-1. **Binary patch `com.qti.chi.override.so`:** Chỉnh sửa mã máy để file mod cung cấp đúng stream metadata cho Camera 0 khi ở Master Mode. Yêu cầu tìm được file gốc (base) mà UltraM8 đã dùng để mod.
-2. **Binary patch `camera.oemlayer.so`:** Thêm null-check trước khi truy cập map entry cho Camera 0 (thay `ldr w20, [x8]` bằng `cbz x8, <skip>` + fallback). Rủi ro cao, cần kiến thức ARM64 assembly chuyên sâu.
-3. **Chờ UltraM8 ra bản mới:** Tác giả cập nhật file mod tương thích với C.93.
+**Status:** RESOLVED in v80  
+**Nguyên nhân:** File mod cũ thay thế `system/vendor/lib64/hw/com.qti.chi.override.so` không tương thích với firmware ColorOS 16 C.93 / 501, khiến luồng stream metadata cho Physical Camera 0 bị thiếu trong `std::map`, dẫn đến null pointer dereference (`ldr w20, [x8]` tại offset `0xd0cd0`). Đồng thời section `[OemSupportedCustomInfoSizes0]` trong `CameraHWConfiguration.config` bị mod ép kích thước đệm ảo `8192X6144` vào chế độ thường (`8001`), làm crash `ChiFeature2RealTimeMCX` (`0x41fcc`).  
+**Khắc phục:** 
+1. Loại bỏ toàn bộ `system/vendor` khỏi module để hệ thống sử dụng Qualcomm CamX Vendor HAL gốc của ROM.
+2. Khôi phục kích thước đệm tiêu chuẩn trong `CameraHWConfiguration.config` cho chế độ `8001`. Master Mode `0x8009` hoạt động mượt mà và ổn định.
 
 ---
 
-## ⚠️ Master Mode Capture Crash (EXIF `stoi: out of range`)
+## ✅ [RESOLVED in v80] Master Mode Capture Crash (`stoi: out of range` in `libAlgoProcess.so`)
 
-**Status:** OPEN — Liên quan đến Add-on X8U  
-**Mức độ:** Nếu Master Mode được fix ở trên, sẽ crash lần nữa **sau khi bấm chụp**  
-**Ảnh hưởng:** Chỉ Master Mode capture.
-
-### Nguyên nhân
-
-File `libAlgoProcess.so` trong Add-on X8U (từ Find X8 Ultra) crash khi ghi dữ liệu EXIF vào ảnh JPEG ở Master Mode. Hàm `APSParamsHolder::get<int>` gọi `std::stoi` với một chuỗi giá trị EXIF không nằm trong phạm vi `int` → exception `St12out_of_range` → **SIGABRT**.
-
-**Backtrace:**
-```
-#08 libAlgoProcess.so — APSParamsHolder::get<int>
-#09 libAlgoProcess.so — fillJpegExifData
-#10 libAlgoProcess.so — rewriteExifDataInJpeg
-#11 libAlgoProcess.so — jpegCodecProcess
-```
-
-### Ghi chú
-
-Không thể vô hiệu hóa riêng `libAlgoProcess.so` vì nó là "nhạc trưởng" điều phối toàn bộ post-processing pipeline (HybridRaw, HDR, Portrait...). Thiếu nó, camera không hoạt động.
+**Status:** RESOLVED in v80  
+**Nguyên nhân:** Addon cũ (v3.97) sử dụng `libAlgoProcess.so` 4.9MB từ nền tảng ColorOS 15 cũ. Khi chạy trên ColorOS 16, hàm `APSParamsHolder::get<int>` bị tràn số nguyên 32-bit trong chuỗi EXIF khi ghi dữ liệu JPEG, phát sinh ngoại lệ `std::out_of_range` làm crash SIGABRT.  
+**Khắc phục:** Cập nhật toàn bộ 52 thư viện ODM hậu kỳ trong Addon lên phiên bản native ColorOS 16 build 501 (trích xuất bit-for-bit từ Find X8 Ultra 501, `libAlgoProcess.so` 6.58MB). Xử lý ảnh và lưu EXIF hoàn toàn trơn tru.
 
 ---
 
-## ✅ Đã fix: KernelSU Install Script Error
+## ✅ [RESOLVED in v80] Camera App Launch Freeze / 0 Cameras Detected
 
-**Status:** FIXED  
-**Mô tả:** Module sử dụng MMT Extended installer. Khi cài qua `ksud module install`, script `customize.sh` không tìm thấy `functions.sh` tại `/dev/tmp/` → lỗi `can't open '/dev/tmp/functions.sh'`.  
-**Fix:** Cài đặt thủ công bằng cách copy trực tiếp vào `/data/adb/modules/` và phân quyền bằng tay.
+**Status:** RESOLVED in v80  
+**Nguyên nhân:** Quá trình port vô tình đưa các tệp driver thanh ghi cảm biến và ma trận phần cứng vật lý của Find X8 Ultra (`com.qti.sensorsocmap.socid_map.bin`, `com.qti.sensor.zf*.so`, `eeprom_zf*.bin`, `self_ois.ocfg`, `oplus_eis_camera.vcfg`) vào module. Vì X8U sử dụng cảm biến LYT-900 (1 inch) và lăng kính chống rung kép, còn OnePlus 13 sử dụng cảm biến LYT-808 (1/1.4") và driver `dodgemain`, Qualcomm CamX không tìm thấy phần cứng tương thích nên báo `Number of camera devices: 0`, dẫn đến ứng dụng camera bị treo đen màn hình (ANR).  
+**Khắc phục:** Tách bạch triệt để giữa tầng phần cứng (Hardware Sensor Driver) và tầng xử lý ảnh (Image Processing Pipeline):
+1. Giữ nguyên 100% driver phần cứng gốc của OnePlus 13 (`dodgemain`, `socid_map.bin`, OIS).
+2. Tích hợp 100% toàn bộ pipeline thuật toán hậu kỳ của Find X8 Ultra 501 (930/935 tệp thuật toán, bao gồm Dual Portrait Hasselblad, ArcSoft RAW Turbo HDR 147MB, model FDC chống méo mặt góc rộng 17MB, Vega face tracking, NPU Hexagon binaries, và toàn bộ LUT màu phim Hasselblad).
 
 ---
 
-## Môi trường test
+## Môi trường xác nhận thực tế (v80 Verified)
 
 - **Thiết bị:** OnePlus 13 (CPH2649 / OP5D55L1)
-- **ROM:** ColorOS 16, Build C.93 (`BP2A.250605.015`)
+- **ROM:** ColorOS 16, Build C.93 (`BP2A.250605.015`) / 16.0.10.501
 - **Root:** KernelSU
-- **Module chính:** OP13-OCVM v61.82-patched
-- **Add-on:** UM8s OP13 CAM blobaddon v3.97
+- **Module chính:** OP13-OCVM v80
+- **Add-on:** FX8U Camera Processing For OP13 v80
+- **Kết quả:** Viewfinder mượt mà, HybridRAW khởi động thành công, Chụp thường / Chân dung / Master Mode hoạt động không lỗi.

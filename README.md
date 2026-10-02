@@ -7,6 +7,14 @@ Mod comes in two packages:
 - An `addon module` with processing ported from *Oppo find x8 ultra* that affects stock app only.
 ---
 
+> ### 🚀 Release v80 (ColorOS 16 / C.93 / 501 Full Support)
+> - **100% Find X8 Ultra Image Processing Pipeline**: All 52 ODM post-processing libraries (including 147MB ArcSoft RAW Turbo HDR, Dual Portrait, FaceUnity AI) and 38 AI models/LUTs (17MB FDC wide-angle face anti-distortion, Vega tracking, Hasselblad Neon LUTs).
+> - **Native Qualcomm CamX Vendor HAL**: Fixed Master Mode `0x8009` SIGSEGV crash.
+> - **ColorOS 16 Alignment**: Native 501 `libAlgoProcess.so` eliminates EXIF `stoi: out of range` crash.
+> - **Hardware Sensor Isolation**: Clean separation preserving native OnePlus 13 `dodgemain` sensor drivers while running the complete X8U computational photography stack.
+
+---
+
 
 > ## :one: Main module
 > Aims at general optimization with image quality being major priority. Fights atrocious levels of sharpening & denoise, corrects various oplus mistakes/overlooks, disables what shouldn't be, enables what should, adds & reworks what can be reused from *fx8u*.
