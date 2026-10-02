@@ -1,0 +1,163 @@
+{
+    "module": "previewdepth",
+    "comment":
+    [
+        "BrandID 1 for oupo, 2 for yijia, 3 for zhenwo",
+        "OdnnRuntime: CPU_FLOAT32, GPU_FLOAT32_16_HYBRID, DSP_FIXED8_TF, GPU_FLOAT16, AIP_FIXED8_TF, AIP_FIXED_TF, CPU, GPU, DSP",
+        "OdnnBoostValue: [0, 110] Example:  low power  30 or 50 ; normal performance 70; high performance 100;super performance 110;",
+        "OdnnLogLevel: ERROR, WARING, INFO, DEBUG, PRINTF",
+        "OdnnPriority: NORMAL, HIGH, LOW",
+        "OdnnProfilingLevel: OFF, BASIC, DETAILED"
+    ],
+    "product": "8750",
+    "VENDOR": "QCOM",
+    "QNN_VERSION": "2.20.5.221031191500_41508",
+    "param":
+    [
+        {
+            "product_name": "8750",
+            "BrandID": 1,
+            "OdnnRuntime": "DSP",
+            "OdnnBoostValue": 20,
+            "OdnnLogLevel": "ERROR",
+            "OdnnPriority": "HIGH",
+            "OdnnProfilingLevel": "OFF",
+            "StereoDepthSmallImageWidth":240,
+            "StereoDepthLargeImageWidth":320,
+            "StereoDepthImageHeight":320,
+            "RefineDepthImageWidth":320,
+            "RefineDepthImageHeight":240
+        }
+    ],
+    "process_image_size":
+    {
+        "enable": false,
+        "rectify_input":
+        {
+            "aspect_4_3": [ 320, 240 ],
+            "aspect_1_1": [ 240, 240 ],
+            "aspect_16_9": [ 424, 238 ],
+            "aspect_full": [ 528, 240 ]
+        },
+        "unrectified_depth":
+        {
+            "aspect_4_3": [ 320, 240 ],
+            "aspect_1_1": [ 240, 240 ],
+            "aspect_16_9": [ 424, 238 ],
+            "aspect_full": [ 528, 240 ]
+        },
+        "opticalflow":
+        {
+            "aspect_4_3": [ 320, 240 ],
+            "aspect_1_1": [ 240, 240 ],
+            "aspect_16_9": [ 424, 238 ],
+            "aspect_full": [ 528, 240 ]
+        }
+    },
+    "ois_param":
+    {
+        "ultrawide":
+        {
+            "periscope": false,
+            "ois_on": false,
+            "hall_coeff": [ 0, 0, 0 ],
+            "sensor_read_time": 0,
+            "sampling_delay": 0,
+            "gain_adjust": 1.0
+        },
+        "wide":
+        {
+            "periscope": false,
+            "ois_on": true,
+            "hall_coeff": [ 1.2158E-05, 1.2158E-05, 0.0 ],
+            "sensor_read_time": 0.005,
+            "sampling_delay": 0.020,
+            "gain_adjust": 1.0
+        },
+        "tele":
+        {
+            "periscope": true,
+            "ois_on": true,
+            "hall_coeff": [ 1.163553E-05, 1.163553E-05, 1.163553E-05 ],
+            "sensor_read_time": 0.015,
+            "sampling_delay": 0.015,
+            "gain_adjust": 1.0
+        },
+        "ultratele":
+        {
+            "periscope": false,
+            "ois_on": true,
+            "hall_coeff": [ 7.141E-06, 7.141E-06, 0.0 ],
+            "sensor_read_time": 0.026,
+            "sampling_delay": 0.010,
+            "gain_adjust": 1.0
+        }
+    },
+    "image_info":
+    {
+        "sensor_crop":
+        {
+            "1x":
+            {
+                "master": [ 4096, 3072 ],
+                "slave": [ 2976, 2232 ]
+            },
+            "2x":
+            {
+                "master": [ 2048, 1536 ],
+                "slave": [ 2976, 2232 ]
+            },
+            "3x":
+            {
+                "master": [ 4096, 3072 ],
+                "slave": [ 2240, 1680 ]
+            },
+            "6x":
+            {
+                "master": [ 4096, 3072 ],
+                "slave": [ 2880, 2160 ]
+            },
+            "6x_fallback_3x":
+            {
+                "master": [ 2880, 2160 ],
+                "slave": [ 1728, 1296 ]
+            }
+        }
+    },
+    "camera_module_info":
+    {
+        "camera_placement":
+        {
+            "1x":
+            {
+                "use_design_value": false,
+                "x": -19.0,
+                "y": -18.8
+            },
+            "2x":
+            {
+                "use_design_value": false,
+                "x": -19.0,
+                "y": -18.8
+            },
+            "3x":
+            {
+                "use_design_value": false,
+                "x": -1.15,
+                "y": 37.6
+            },
+            "6x":
+            {
+                "use_design_value": true,
+                "x": -17.9,
+                "y": -18.8
+            },
+            "6x_fallback_3x":
+            {
+                "use_design_value": false,
+                "x": 1.15,
+                "y": 37.6
+            }
+        }
+    }
+}

@@ -1,0 +1,143 @@
+{
+    "VideoLTMCtrl":
+    {
+        "24019": // ProjectName
+        {
+            "SeneorMode": {
+                "Camera0":{
+                    "iCameraId": 0,
+                    "Trigger": [
+                        {
+                            "drcGainRange":[0, 512],
+                            "aecSensitivityRange":[0, 512],
+                            "luxIdxRange":[0,1400],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.3, 0.8],
+                                "globalToneRange": [0.1, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } // end VideoLTMCtrlPars
+                        }, // end Trigger0
+                        {
+                            "drcGainRange":[0, 512],
+                            "aecSensitivityRange":[0, 512],
+                            "luxIdxRange":[1400,1900],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.6, 0.8],
+                                "globalToneRange": [0.4, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } // end VideoLTMCtrlPars
+                        } // end Trigger1
+                    ] // end Trigger
+                }, // end cam0
+                "Camera1":{
+                    "iCameraId": 1,
+                    "Trigger": [
+                        {
+                            "drcGainRange":[0, 128],
+                            "aecSensitivityRange":[0, 128],
+                            "luxIdxRange":[1900,2000],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.6, 0.8],
+                                "globalToneRange": [0.4, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } //end VideoLTMCtrlPars
+                        } // end Trigger0
+                    ] // end Trigger
+                }, // end cam1
+                "Camera2":{
+                    "iCameraId": 2,
+                    "Trigger": [
+                        {
+                            "drcGainRange":[0, 128],
+                            "aecSensitivityRange":[0, 128],
+                            "luxIdxRange":[0,900],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.6, 0.8],
+                                "globalToneRange": [0.4, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } // end VideoLTMCtrlPars
+                        } // end Trigger0
+                    ] // end Trigger
+                }, // end cam2
+                "Camera3":{
+                    "iCameraId": 3,
+                    "Trigger": [
+                        {
+                            "drcGainRange":[0, 128],
+                            "aecSensitivityRange":[0, 128],
+                            "luxIdxRange":[0,900],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.6, 0.8],
+                                "globalToneRange": [0.4, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } // end VideoLTMCtrlPars
+                        } // end Trigger0
+                    ] // Trigger
+                }, // end cam3
+                "Camera4":{
+                    "iCameraId": 4,
+                    "Trigger": [
+                        {
+                            "drcGainRange":[0, 128],
+                            "aecSensitivityRange":[0, 128],
+                            "luxIdxRange":[0,900],
+                            "sceneId": 25,
+                            "VideoLTMCtrlPars": {
+                                "maxDrcRange": 10,
+                                "maxDarkBoostRange": 10,
+                                "maxBrightSuppress": 10,
+                                "darkToneRange": [0.0, 0.2],
+                                "midToneRange": [0.6, 0.8],
+                                "globalToneRange": [0.4, 0.9],
+                                "birghtToneRange": [0.8, 1.0],
+                                "basicToneGain": 84.0,
+                                "histStep": 1,
+                                "histSmoothStr": 0.2
+                            } // end VideoLTMCtrlPars
+                        } // end Trigger0
+                    ] // end Trigger
+                } // end cam4
+            } // end SeneorMode
+        } // end 22111
+    } // end VideoLTM
+}

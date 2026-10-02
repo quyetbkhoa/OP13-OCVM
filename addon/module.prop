@@ -1,0 +1,6 @@
+id=um8s_op13_ocvm_proc_addon
+name=FX8U Camera Processing For OP13
+version=3.97-COS16-501
+versionCode=501
+author=UltraM8 & quyetbkhoa
+description=Find X8 Ultra camera processing blobs (native ColorOS 16 16.0.10.501) for OnePlus 13. Fixes stoi out of range and full COS16 alignment.
