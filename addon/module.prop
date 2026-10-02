@@ -1,6 +1,6 @@
 id=um8s_op13_ocvm_proc_addon
-name=FX8U Camera Processing For OP13
-version=v80
-versionCode=80000
+name=OCVM Addon | FX8U Computational Photography Engine
+version=v81
+versionCode=81000
 author=UltraM8, quyetbkhoa & Antigravity
-description=Find X8 Ultra 100% full camera processing blobs & AI models (ColorOS 16 16.0.10.501) for OnePlus 13. Full 52 libraries, ArcSoft Turbo RAW HDR, Dual Portrait, FDC, and Hasselblad LUTs.
+description=Find X8 Ultra 100% computational photography engine for OnePlus 13 (ColorOS 16 16.0.10.501/C.93). ArcSoft TurboHDR RAW (141MB), HybridRAW (13MB), Dual Portrait (18MB), HCS framework, and Hasselblad LUTs with native OP13 sensor tuning.

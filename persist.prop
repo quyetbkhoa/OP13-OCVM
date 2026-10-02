@@ -1,9 +1,3 @@
-persist.aps.turbohdr.lpnr.enable=0
-persist.camera.hdr.lumadenoiselevel=0
-persist.camera.hdr.colordenoiselevel=0
-persist.camera.hdr.sharplevel=0
-persist.camera.hdr.ringnoiselevel=0
-persist.vendor.camera.edge.skip=1
 persist.vendor.camera.forceDisableUBWCOnIfeIpeLink=FALSE
 persist.vendor.camera.disableIPEInternalDownscale=TRUE
 persist.vendor.camera.maxRAWSizes=10

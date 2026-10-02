@@ -7,11 +7,11 @@ Mod comes in two packages:
 - An `addon module` with processing ported from *Oppo find x8 ultra* that affects stock app only.
 ---
 
-> ### 🚀 Release v80 (ColorOS 16 / C.93 / 501 Full Support)
-> - **100% Find X8 Ultra Image Processing Pipeline**: All 52 ODM post-processing libraries (including 147MB ArcSoft RAW Turbo HDR, Dual Portrait, FaceUnity AI) and 38 AI models/LUTs (17MB FDC wide-angle face anti-distortion, Vega tracking, Hasselblad Neon LUTs).
-> - **Native Qualcomm CamX Vendor HAL**: Fixed Master Mode `0x8009` SIGSEGV crash.
-> - **ColorOS 16 Alignment**: Native 501 `libAlgoProcess.so` eliminates EXIF `stoi: out of range` crash.
-> - **Hardware Sensor Isolation**: Clean separation preserving native OnePlus 13 `dodgemain` sensor drivers while running the complete X8U computational photography stack.
+> ### 🚀 Release v81 (ColorOS 16 / C.93 / 501 Full Support)
+> - **Color Accuracy & AWB Restored**: Purged incompatible Find X8 Ultra 13-channel spectral sensor HAL (`libCS.so`), X8U AI White Balance neural model (`AIAWB_q.odnn`), golden spectral calibration, and X8U gamma curve overrides. Master Mode, Photo Mode, and Night Mode now run with 100% native OnePlus 13 TCS3449 color sensor calibration and ISP white balance.
+> - **Full Computational Post-Processing & Sharpness**: Integrated missing Hasselblad Color System framework dependencies (`libhcsfwk.so`, `libhcsutils.so`, `libomp.so`). Removed artificial zero-sharpening overrides (`vendor.arcsoft.turbo_*_sharpness=0`) and Qualcomm CamX `edge.skip=1`, allowing ArcSoft TurboHDR and CamX to execute full multi-frame deblurring, detail synthesis, and crisp edge reconstruction.
+> - **Portrait Mode & Face Retouch Fix**: Merged full suite of 81 native OP13 C.93 face retouch shaders (`pfb_bin/`) and 155 makeup neural models (`fb_model/`), eliminating portrait segmentation and beauty processing glitches.
+> - **Clean Architecture Decoupling**: Completely segregated Main module (system/persist props, CamX bandwidth/clock tuning, and service daemon) from Add-on module (pure computational photography engine: ArcSoft TurboHDR 147MB, HybridRAW 13.7MB, Dual Portrait 18.2MB, Hasselblad LUTs), eliminating overlayfs collisions.
 
 ---
 

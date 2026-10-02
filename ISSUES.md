@@ -1,5 +1,24 @@
 # Issue Tracking & Changelog — OP13-OCVM
 
+## ✅ [RESOLVED in v81] Master Mode Sai màu & Ảnh mất hậu kỳ nét / Chi tiết (Post-processing Bypassed)
+
+**Status:** RESOLVED in v81  
+**Nguyên nhân gốc rễ:** 
+1. **Sai lệch cân bằng trắng & màu sắc (AWB / Master Mode):** File mod Addon trước đó vô tình chứa `libCS.so` (HAL cảm biến màu quang phổ 13 kênh của Find X8 Ultra thay vì cảm biến 5 kênh TCS3449 của OP13), neural model `AIAWB_q.odnn` của X8U, và các tệp đường cong `gamma_masterMode_quick_hdr_conf.json`. Do OP13 không có cảm biến 13 kênh, HAL đọc sai dữ liệu lux và CCT, ép ISP xuất ma trận màu sai trầm trọng.
+2. **Ảnh mờ, thiếu nét, mất bước hậu kỳ (Post-processing Skipped):** 
+   - `persist.vendor.camera.edge.skip=1` trong `persist.prop` ra lệnh cho Qualcomm CamX Chi Node bỏ qua toàn bộ bước tái tạo viền sắc nét (edge reconstruction).
+   - `vendor.arcsoft.turbo_re_sharpness=0` và `vendor.arcsoft.turbo_hdr_sharpen_*=0` trong `system.prop` ép thuật toán ArcSoft TurboHDR về mức độ nét bằng 0.
+   - Thiếu 3 thư viện phụ thuộc thời gian chạy của bộ khung Hasselblad Color System: `libhcsfwk.so`, `libhcsutils.so`, `libomp.so`.
+3. **Cơ chế nạp Overlayfs của KernelSU:** KernelSU nạp snapshot overlayfs vào RAM ngay tại thời điểm boot (`post-fs-data`). Mọi thao tác sửa file runtime trong `/data/adb/modules` nếu không reboot máy thì RAM vẫn giữ nguyên các file sai cũ (AIAWB, libCS) của lần boot trước.
+**Khắc phục:** 
+1. Xóa bỏ triệt để `libCS.so`, `AIAWB_q.odnn`, `*gamma*`, `*golden*`, `*mapxy*`, `*Stereo*` khỏi Addon; để 100% cân bằng trắng ISP và hiệu chuẩn TCS3449 chạy bằng HAL gốc native OP13 C.93.
+2. Bổ sung `libhcsfwk.so`, `libhcsutils.so`, `libomp.so` từ 501 vào `odm/lib64/`.
+3. Loại bỏ toàn bộ cờ zero-sharpening và `edge.skip=1`, giải phóng toàn bộ khả năng khử nhiễu đa khung, chống mờ và tăng cường chi tiết của ArcSoft RAW TurboHDR và HybridRAW.
+4. Hợp nhất trọn vẹn 81 shader `pfb_bin/` và 155 model `fb_model/` giải quyết triệt để lỗi chế độ chân dung làm đẹp khuôn mặt.
+5. Tách sạch Main module (chỉ chứa props và service script, không đè `odm/`) và Add-on module (đảm nhiệm toàn bộ thuật toán hậu kỳ).
+
+---
+
 ## ✅ [RESOLVED in v80] Master Mode Crash (`0x8009` at `camera.oemlayer.so`)
 
 **Status:** RESOLVED in v80  
