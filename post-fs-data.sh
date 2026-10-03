@@ -33,6 +33,12 @@ resetprop oplus.bokeh.largeMemory 1
 # --- SELinux: Unblock ColorOS CamX initPropertyInfo gate ---
 setenforce 0
 
+# --- HDR Transform Suite & AITM Pipeline Activation (v84) ---
+resetprop persist.camera.hdrtrans.debug 1
+resetprop persist.camera.hdrtrans.emptynode 0
+resetprop persist.camera.oplus.fbhc.bypass 0
+resetprop persist.camera.hybridraw.closeLightUp 0
+
 # --- Striping log cleanup ---
 rm -f /data/vendor/camera/OplusSATFusionOfflineReprocess0_*
 rm -f /data/vendor/camera/RealtimeDefault1_*

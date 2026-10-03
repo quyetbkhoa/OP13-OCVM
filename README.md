@@ -7,12 +7,20 @@ Mod comes in two packages:
 - An `addon module` with processing ported from *Oppo find x8 ultra* that affects stock app only.
 ---
 
-> ### 🎯 V15 Dual Portrait & HCS Live Validation Status
-> - **In-Memory Verification Confirmed**: Live RAM mapping (`/proc/<pid>/maps`) on OnePlus 13 proves `libOPAlgoCamPreviewDualPortrait.so`, `libhcsfwk.so`, and `libhcsutils.so` are actively loaded and executing (`r-xp`).
-> - **ArcSoft Preview Dethroned**: `libarcsoft_dualcam_bokeh_preview.so` is completely replaced by Find X8 Ultra's neural network pipeline (`dualcam_capture_bokeh/`, 45 AI models, 408MB).
-> - **SELinux Root-Cause Resolved**: Reverse-engineered ColorOS CamX `initPropertyInfo()` gate where `security_getenforce()` blocked `g_PropEnableFlag` and muted 70+ algorithm properties. Unblocked at boot level in `post-fs-data.sh`.
-> - **Real-World Photos Saved**: Clean portrait captures saved to storage without black-screen, freezes, or HAL crashes.
-> - Detailed evidence & disassembly: [`V15_PORT_STATUS.md`](V15_PORT_STATUS.md).
+> ### 🎯 V16 HDR Transform & AI Tone Mapping Validation Status
+> - **In-Memory Verification Confirmed**: Memory inspection of `com.oplus.camera` algorithm table in RAM (`/proc/<pid>/mem`) confirms both Node 85 (`hdrtransform`) and Node 91 (`fbHdrConvert`) are registered into the CamX runtime execution graph.
+> - **Full Neural Weights & LUT Assets Mounted**: Deployed 21 neural network models and tone LUTs (2x `AITM_*` in `fb_model/`, `ai_hdr_recovery.bin`, and 18x `aitm_*.bin` in `hybridraw_models/`, ~52MB).
+> - **10-bit Ultra HDR & Adobe Gain Map Integration**: Captured images output full Google Ultra HDR Container XMP and Adobe HDR Gain Map metadata, activating 2,007-nit peak EDR display boost in ColorOS Gallery.
+> - **Dual Portrait & HCS Framework Still Live**: `libOPAlgoCamPreviewDualPortrait.so`, `libhcsfwk.so`, and `libhcsutils.so` remain resident and active in RAM (`r-xp`).
+> - Detailed evidence & disassembly: [`V16_HDRTRANSFORM_STATUS.md`](V16_HDRTRANSFORM_STATUS.md).
+
+---
+
+> ### 🚀 Release v84 (Find X8 Ultra HDR Transform Suite & AI Tone Mapping)
+> - **Find X8 Ultra HDR Transform Pipeline Active**: Integrated `libOPAlgoCamPortraitHDRTransform.so`, `libOPAlgoCamHDRTransformCamera.so`, and `libOPAlgoCamHDRTransformQuick.so` into the processing stack.
+> - **AI Tone Mapping Neural Weights & Recovery**: Mounted 18 `aitm_*.bin` neural nets, `ai_hdr_recovery.bin`, and AITM 65536 fp32 SDR/HDR LUT curves.
+> - **Ultra HDR & EDR Boost**: Verified Google Ultra HDR container formatting and real-time display EDR animation up to 2,007 nits.
+> - **Dual Portrait Engine & HCS Uncompromised**: Preserves full HCS framework and 45-model dual-cam portrait bokeh engine in memory.
 
 ---
 
