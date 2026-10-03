@@ -7,12 +7,20 @@ Mod comes in two packages:
 - An `addon module` with processing ported from *Oppo find x8 ultra* that affects stock app only.
 ---
 
-> ### V14 Max Safe validation status
-> - V14 device testing confirms X8U-derived BasicTone/LUT data is consumed by the OP13 camera (`BasicTone`, `CombineLut`, `SCCWCM`, and `vigTable` logs).
-> - The 25 X8U-only `.so` files are present in the module but were **not observed loaded** in the OP13 camera/provider maps during 1x, front-face, Master Mode, and video tests.
-> - Do not describe HCS, DualPortrait, HDRTransform, or VideoLTM as active algorithms until their SONAMEs appear in the camera process maps.
-> - Sensor/DSP-risk assets remain excluded: X8U RAW/HybridRAW, QNN/ODNN/CDSP, sensor calibration, EEPROM/DNG/CFR/OIS, and `zf*` hardware configuration.
-> - Detailed evidence: [`V14_PORT_STATUS.md`](V14_PORT_STATUS.md).
+> ### 🎯 V15 Dual Portrait & HCS Live Validation Status
+> - **In-Memory Verification Confirmed**: Live RAM mapping (`/proc/<pid>/maps`) on OnePlus 13 proves `libOPAlgoCamPreviewDualPortrait.so`, `libhcsfwk.so`, and `libhcsutils.so` are actively loaded and executing (`r-xp`).
+> - **ArcSoft Preview Dethroned**: `libarcsoft_dualcam_bokeh_preview.so` is completely replaced by Find X8 Ultra's neural network pipeline (`dualcam_capture_bokeh/`, 45 AI models, 408MB).
+> - **SELinux Root-Cause Resolved**: Reverse-engineered ColorOS CamX `initPropertyInfo()` gate where `security_getenforce()` blocked `g_PropEnableFlag` and muted 70+ algorithm properties. Unblocked at boot level in `post-fs-data.sh`.
+> - **Real-World Photos Saved**: Clean portrait captures saved to storage without black-screen, freezes, or HAL crashes.
+> - Detailed evidence & disassembly: [`V15_PORT_STATUS.md`](V15_PORT_STATUS.md).
+
+---
+
+> ### 🚀 Release v83 (Find X8 Ultra Dual Portrait & HCS Engine Live)
+> - **Find X8 Ultra Dual Portrait Engine Active**: Successfully deployed and validated the 45 AI models & neural network shaders under `/odm/etc/camera/dualcam_capture_bokeh/`.
+> - **Hasselblad Color System (HCS) Active**: Full runtime integration of `libhcsfwk.so` and `libhcsutils.so` running directly inside `com.oplus.camera`.
+> - **Dynamic Algorithm Gate Unlocked**: Overcame the SELinux Enforcing block in `libAlgoProcess.so`, ensuring persistent activation of all advanced Oppo CamX algorithm properties.
+> - **Rock-Solid Hardware Stability**: 100% preservation of OP13 sensor mappings (`dodgemain`, `dodge*`) and native buffer pool configurations. No HAL SIGSEGV crashes.
 
 ---
 

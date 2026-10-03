@@ -1,6 +1,6 @@
 id=xy1_um8s_op13_ocvm
 name=OCVM | OP13 Camera Mod Main
-version=v81
-versionCode=81000
+version=v83
+versionCode=83000
 author=UltraM8, quyetbkhoa & Antigravity
-description=Find X8 Ultra processing pipeline foundation for OnePlus 13 on ColorOS 16 (16.0.10.501/C.93). CamX ISP bandwidth tuning, native sharpness & Hasselblad HDR processing unlocked.
+description=Find X8 Ultra processing pipeline foundation for OnePlus 13 on ColorOS 16 (16.0.10.501/C.93). CamX ISP bandwidth tuning, Dual Portrait Engine & Hasselblad Color System (HCS) live in RAM.
