@@ -1,5 +1,15 @@
 # Issue Tracking & Changelog — OP13-OCVM
 
+## V14 Max Safe — verified status
+
+- **Built/offline checked:** separate V14 artifact contains 25 X8U-only libraries and 375 camera data files; ZIP paths, root module files, BOM, and staging/ZIP hashes were verified.
+- **Loaded:** X8U-derived BasicTone/LUT data is confirmed by live camera logs (`BasicTone`, `CombineLut`, `SCCWCM`, and `vigTable`).
+- **Not loaded:** `libhcsfwk.so`, `libhcsutils.so`, `libomp.so`, DualPortrait, HDRTransform, and VideoLTM libraries were not observed in `com.oplus.camera` or `vendor.qti.camera.provider-service_64` maps.
+- **Behavior validated:** rear 1x, front face, Master Mode, and video completed in the captured test window without a new camera/provider crash.
+- **Do not claim:** the dormant `.so` libraries are not counted as active X8U algorithm execution.
+- **Next investigation:** trace the OP13 caller/registration path and ABI boundary for dormant X8U libraries before adding more activation changes.
+
+
 ## ✅ [RESOLVED in v81] Master Mode Sai màu & Ảnh mất hậu kỳ nét / Chi tiết (Post-processing Bypassed)
 
 **Status:** RESOLVED in v81  

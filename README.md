@@ -7,6 +7,15 @@ Mod comes in two packages:
 - An `addon module` with processing ported from *Oppo find x8 ultra* that affects stock app only.
 ---
 
+> ### V14 Max Safe validation status
+> - V14 device testing confirms X8U-derived BasicTone/LUT data is consumed by the OP13 camera (`BasicTone`, `CombineLut`, `SCCWCM`, and `vigTable` logs).
+> - The 25 X8U-only `.so` files are present in the module but were **not observed loaded** in the OP13 camera/provider maps during 1x, front-face, Master Mode, and video tests.
+> - Do not describe HCS, DualPortrait, HDRTransform, or VideoLTM as active algorithms until their SONAMEs appear in the camera process maps.
+> - Sensor/DSP-risk assets remain excluded: X8U RAW/HybridRAW, QNN/ODNN/CDSP, sensor calibration, EEPROM/DNG/CFR/OIS, and `zf*` hardware configuration.
+> - Detailed evidence: [`V14_PORT_STATUS.md`](V14_PORT_STATUS.md).
+
+---
+
 > ### 🚀 Release v81 (ColorOS 16 / C.93 / 501 Full Support)
 > - **Color Accuracy & AWB Restored**: Purged incompatible Find X8 Ultra 13-channel spectral sensor HAL (`libCS.so`), X8U AI White Balance neural model (`AIAWB_q.odnn`), golden spectral calibration, and X8U gamma curve overrides. Master Mode, Photo Mode, and Night Mode now run with 100% native OnePlus 13 TCS3449 color sensor calibration and ISP white balance.
 > - **Full Computational Post-Processing & Sharpness**: Integrated missing Hasselblad Color System framework dependencies (`libhcsfwk.so`, `libhcsutils.so`, `libomp.so`). Removed artificial zero-sharpening overrides (`vendor.arcsoft.turbo_*_sharpness=0`) and Qualcomm CamX `edge.skip=1`, allowing ArcSoft TurboHDR and CamX to execute full multi-frame deblurring, detail synthesis, and crisp edge reconstruction.
