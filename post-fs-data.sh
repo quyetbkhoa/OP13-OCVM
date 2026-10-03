@@ -39,6 +39,12 @@ resetprop persist.camera.hdrtrans.emptynode 0
 resetprop persist.camera.oplus.fbhc.bypass 0
 resetprop persist.camera.hybridraw.closeLightUp 0
 
+# --- Video LTM & Video AI Process Activation (v85) ---
+resetprop persist.camera.videoltm.enable 1
+resetprop vendor.oplus.camera.vLTMTurnOff 0
+resetprop vendor.oplus.camera.vAINRTurnOff 0
+resetprop vendor.oplus.camera.vAINRAlgoTurnOff 0
+
 # --- Striping log cleanup ---
 rm -f /data/vendor/camera/OplusSATFusionOfflineReprocess0_*
 rm -f /data/vendor/camera/RealtimeDefault1_*

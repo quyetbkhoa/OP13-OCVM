@@ -16,6 +16,15 @@ Mod comes in two packages:
 
 ---
 
+> ### 🚀 Release v85 (Find X8 Ultra Video LTM & Video AI Process Unlocked)
+> - **Video LTM & Video AI Process Active**: Deployed Find X8 Ultra's CamX Chi node components (`com.oplus.node.videoltm.so`, `com.oplus.node.videoainr.so`) and processing engines (`libVideoLTM.so`, `libVideoAIProc.so`).
+> - **CamX Hardware Config Integration**: Appended native `[VideoLTMNode]` section to `CameraHWConfiguration.config` and deployed missing `video_ai_proc_cfg.json` without breaking base OP13 sensor pipelines.
+> - **V15 Crash Root Cause Resolved**: Fixed the missing Chi node wrappers and incomplete node configuration table that previously caused NullPointerException on camera initialization.
+> - **Runtime Verified**: Live camera preview and video capture validated with zero crashes under ColorOS 16 (16.0.10.501/C.93).
+> - **Tuning Properties Active**: `persist.camera.videoltm.enable=1`, `vendor.oplus.camera.vLTMTurnOff=0`, `vendor.oplus.camera.vAINRTurnOff=0`, `vendor.oplus.camera.vAINRAlgoTurnOff=0`.
+
+---
+
 > ### 🚀 Release v84 (Find X8 Ultra HDR Transform Suite & AI Tone Mapping)
 > - **Find X8 Ultra HDR Transform Pipeline Active**: Integrated `libOPAlgoCamPortraitHDRTransform.so`, `libOPAlgoCamHDRTransformCamera.so`, and `libOPAlgoCamHDRTransformQuick.so` into the processing stack.
 > - **AI Tone Mapping Neural Weights & Recovery**: Mounted 18 `aitm_*.bin` neural nets, `ai_hdr_recovery.bin`, and AITM 65536 fp32 SDR/HDR LUT curves.
